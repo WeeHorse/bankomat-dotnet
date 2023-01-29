@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace banko;
 
 class Program
@@ -9,8 +8,24 @@ class Program
         Bankomat bankomat = new Bankomat();
         Account account = new Account();
         Card card = new Card(account);
+
+        // Sätt in ett kort i bankomaten => “Card inserted”
         bankomat.insertCard(card);
         Console.WriteLine(bankomat.getMessage());
+
+        // Om kortet är nytt = > “Create new pin code”
+        Console.WriteLine(bankomat.getMessage());
+        bankomat.createPin("0123");
+        // “Pin created. You can start using your card.”
+        Console.WriteLine(bankomat.getMessage());
+
+
+
+        // Om kortet har en pinkod => “Enter your pin code”
+        Console.WriteLine(bankomat.getMessage());
+
+
+
         bankomat.enterPin("1234");
         Console.WriteLine(bankomat.getMessage());
         bankomat.enterPin("0123");

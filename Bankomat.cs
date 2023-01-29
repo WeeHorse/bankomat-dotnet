@@ -20,15 +20,39 @@ public class Bankomat {
         return msg; // return 
     }
 
+    public bool isCardInserted()
+    {
+        return cardInserted;
+    }
+
     public void insertCard(Card card){
         cardInserted = true;
         this.card = card;
         msgs.Add("Card inserted");
+        if(card.hasPin())
+        {
+            msgs.Add("Enter your pin code");
+        }
+        else
+        {
+            msgs.Add("Create new pin code");
+        }
     }
 
     public void ejectCard(){
         cardInserted = false;
         msgs.Add("Card removed, don't forget it!");
+    }
+
+    public bool createPin(string pin)
+    {
+        bool result = card.createPin(pin);
+        if (result)
+        {
+            msgs.Add("Pin created. You can start using your card.");
+            return true;
+        }
+        return false;
     }
 
     public bool enterPin(string pin){
